@@ -30,6 +30,8 @@ services:
       - "8081:8080"
       - "38015:28015"
       - "39015:29015"
+    volumes:
+      - ./data/rethinkdb/rdb1:/data
 
   rethinkdb2:
     build: ./rethinkdb
@@ -42,6 +44,8 @@ services:
       - rethink-net
     ports:
       - "8082:8080"
+    volumes:
+      - ./data/rethinkdb/rdb2:/data
 
   rethinkdb3:
     build: ./rethinkdb
@@ -54,6 +58,8 @@ services:
       - rethink-net
     ports:
       - "8083:8080"
+    volumes:
+      - ./data/rethinkdb/rdb3:/data
 
   rethinkdb4:
     build: ./rethinkdb
@@ -66,6 +72,8 @@ services:
       - rethink-net
     ports:
       - "8084:8080"
+    volumes:
+      - ./data/rethinkdb/rdb4:/data
 
   rethinkdb5:
     build: ./rethinkdb
@@ -78,6 +86,8 @@ services:
       - rethink-net
     ports:
       - "8085:8080"
+    volumes:
+      - ./data/rethinkdb/rdb5:/data
 
 networks:
   rethink-net:

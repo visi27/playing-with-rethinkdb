@@ -1,8 +1,8 @@
 FROM rethinkdb:latest
 
-COPY ./start-rethinkdb-cluster.sh /data
+COPY ./start-rethinkdb-cluster.sh /tmp
 
-RUN chmod 777 /data/start-rethinkdb-cluster.sh
+RUN chmod 777 /tmp/start-rethinkdb-cluster.sh
 RUN ls -al /data
 
-CMD ["bash", "-c", "/data/start-rethinkdb-cluster.sh"]
+CMD ["bash", "-c", "/tmp/start-rethinkdb-cluster.sh"]
