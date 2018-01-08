@@ -39,8 +39,7 @@
         </thead>
         <tbody>
           <template repeat="{{server in servers}}">
-            <tr style="{{ !server.status && 'display: none' }}"
-                class="{{ server.status != 'connected' && 'fail' }}">
+            <tr class="connected">
               <td>{{server.name}}</td>
               <td>{{server.network.reql_port}}</td>
               <td>{{server.network.http_admin_port}}</td>

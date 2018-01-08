@@ -19,7 +19,6 @@ $(function() {
   let socket = io.connect();
 
   socket.on("stats", function(data) {
-    console.log("STATS")
     cluster.stats = data.new_val.query_engine;
     chart.push([
       { time: timestamp(), y: cluster.stats.written_docs_per_sec },
@@ -27,24 +26,24 @@ $(function() {
     ]);
   });
 
+  cluster.servers = [];
   socket.on("servers", function(data) {
-    console.log("SERVERS")
-    console.log(data)
     if (data.length){
-      console.log("DATA.LENGTH: ", data.length)
-      return cluster.servers = data;
+      return cluster.servers = data.new_val;
     }
 
 
     if (!data.old_val){
-      console.log("NEW SERVER")
-      return cluster.servers.push(data.new_val);
+      cluster.servers.push(data.new_val);
+      return;
     }
 
+    if(data.new_val && data.old_val) {
+      for (let s in cluster.servers)
+        if (cluster.servers[s].id == data.old_val.id)
+          cluster.servers[s] = data.new_val;
+    }
 
-    for (let s in cluster.servers)
-      if (cluster.servers[s].id == data.old_val.id)
-        cluster.servers[s] = data.new_val;
   });
 
   socket.on("cdr", function(data) {
