@@ -1,6 +1,6 @@
 {
   "rethinkdb": {
-    "host": "rethinkdb1",
+    "host": "rethinkproxy",
     "port": 28015
   }
 }
