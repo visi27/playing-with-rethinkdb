@@ -20,7 +20,7 @@ services:
       - "DBCLUSTERHOSTS=rethinkdb1;rethinkdb2;rethinkdb3;rethinkdb4;rethinkdb5"
       - "RETHINKARGS= proxy --server-name proxy_server --bind all"
     ports:
-      - "8081:8080"
+      - "8080:8080"
       - "38015:28015"
       - "39015:29015"
     hostname: rethinkproxy
@@ -42,7 +42,8 @@ services:
     hostname: rethinkdb1
     networks:
       - rethinknet
-
+    ports:
+      - "8081:8080"
     volumes:
       - ./data/rethinkdb/rdb1:/data
 
