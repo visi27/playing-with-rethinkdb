@@ -17,7 +17,7 @@ services:
     build: ./rethinkproxy
     container_name: rethinkproxy
     environment:
-      - "DBCLUSTERHOSTS=rethinkdb1;rethinkdb2;rethinkdb3;rethinkdb4;rethinkdb5"
+      - "JOINNODE=rethinkdb1"
       - "RETHINKARGS= proxy --server-name proxy_server --bind all"
     ports:
       - "8080:8080"
