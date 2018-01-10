@@ -28,14 +28,22 @@ $(function() {
 
   cluster.servers = [];
   socket.on("servers", function(data) {
+    console.log(data.length)
+    console.log(data);
     if (data.length){
-      return cluster.servers = data.new_val;
+      return cluster.servers = data;
     }
 
 
     if (!data.old_val){
       cluster.servers.push(data.new_val);
       return;
+    }
+
+    if (!data.new_val){
+      for (let s in cluster.servers)
+        if (cluster.servers[s].id == data.old_val.id)
+          cluster.servers.splice(s, 1)
     }
 
     if(data.new_val && data.old_val) {
